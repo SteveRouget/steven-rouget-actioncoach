@@ -7,7 +7,7 @@ const ResourcesPage = () => {
   const faqs = [
     {
       question: 'What is ActionCOACH?',
-      answer: 'ActionCOACH is the world's number one business coaching firm, founded in 1993 by Brad Sugars. They provide business coaching, mentoring, and training services to small and medium-sized businesses worldwide, focusing on helping owners achieve their goals in profit, time, and team development.'
+      answer: "ActionCOACH is the world's number one business coaching firm, founded in 1993 by Brad Sugars. They provide business coaching, mentoring, and training services to small and medium-sized businesses worldwide, focusing on helping owners achieve their goals in profit, time, and team development."
     },
     {
       question: 'How is ActionCOACH different from a consultant?',
@@ -15,11 +15,11 @@ const ResourcesPage = () => {
     },
     {
       question: 'What is the 17-week guarantee?',
-      answer: 'The ActionCOACH 7-point, 17-week guarantee means that if your business doesn't make back more on its bottom line in profit than what you've invested in coaching within 17 weeks, Steven will continue to coach you for FREE until it does. This demonstrates confidence in the proven ActionCOACH methodology.'
+      answer: "The ActionCOACH 7-point, 17-week guarantee means that if your business doesn't make back more on its bottom line in profit than what you've invested in coaching within 17 weeks, Steven will continue to coach you for FREE until it does. This demonstrates confidence in the proven ActionCOACH methodology."
     },
     {
       question: 'Who is business coaching for?',
-      answer: 'Business coaching is for any business owner who is serious about growth, wants to improve their profitability, build a stronger team, or gain more control over their time. It's for those who are open to learning, willing to implement new strategies, and committed to their success.'
+      answer: "Business coaching is for any business owner who is serious about growth, wants to improve their profitability, build a stronger team, or gain more control over their time. It's for those who are open to learning, willing to implement new strategies, and committed to their success."
     },
     {
       question: 'How long does a coaching program last?',
@@ -27,7 +27,7 @@ const ResourcesPage = () => {
     },
     {
       question: 'What results can I expect?',
-      answer: 'Clients typically experience significant improvements in profitability, cash flow, team performance, and personal time. Specific results vary, but the focus is always on measurable outcomes that contribute directly to your business's success and your personal freedom.'
+      answer: "Clients typically experience significant improvements in profitability, cash flow, team performance, and personal time. Specific results vary, but the focus is always on measurable outcomes that contribute directly to your business's success and your personal freedom."
     },
     {
       question: 'How much does business coaching cost?',
@@ -43,7 +43,7 @@ const ResourcesPage = () => {
     },
     {
       question: 'How do I get started?',
-      answer: 'The best way to get started is to book a free consultation with Steven. This no-obligation session allows you to discuss your business goals, challenges, and how coaching can help you achieve them. It's an opportunity to see if there's a good fit.'
+      answer: "The best way to get started is to book a free consultation with Steven. This no-obligation session allows you to discuss your business goals, challenges, and how coaching can help you achieve them. It's an opportunity to see if there's a good fit."
     },
   ]
 
