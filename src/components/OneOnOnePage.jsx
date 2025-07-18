@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, ArrowRight, Star } from 'lucide-react'
+import coachingSessionImage from '../assets/coaching_session_professional.jpeg'
 
 const OneOnOnePage = () => {
   return (
@@ -34,10 +35,10 @@ const OneOnOnePage = () => {
             </ul>
           </div>
           <div>
-            {/* Placeholder for an image related to 1-on-1 coaching or personalized attention */}
+            {/* Professional coaching session image */}
             <img 
-              src="/assets/coaching_session_professional.jpeg" 
-              alt="1-on-1 Coaching" 
+              src={coachingSessionImage} 
+              alt="1-on-1 Coaching Session" 
               className="rounded-lg shadow-lg"
             />
           </div>
