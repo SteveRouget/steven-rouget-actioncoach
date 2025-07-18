@@ -23,6 +23,9 @@ import SixWaysBlogPost from './components/SixWaysBlogPost'
 import SuccessLeavesClueBlogPost from './components/SuccessLeavesClueBlogPost'
 import TradesmanToBusinessOwnerBlogPost from './components/TradesmanToBusinessOwnerBlogPost'
 import TimeMasteryBlogPost from './components/TimeMasteryBlogPost'
+import PrivacyPolicyPage from './components/PrivacyPolicyPage'
+import TermsOfServicePage from './components/TermsOfServicePage'
+import DisclaimerPage from './components/DisclaimerPage'
 import './App.css'
 
 function ScrollToTop() {
@@ -64,6 +67,9 @@ function App() {
             <Route path="/blog/success-leaves-clues-test-measure" element={<SuccessLeavesClueBlogPost />} />
             <Route path="/blog/tradesman-to-business-owner" element={<TradesmanToBusinessOwnerBlogPost />} />
             <Route path="/blog/time-mastery-busy-entrepreneurs" element={<TimeMasteryBlogPost />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
           </Routes>
         </main>
         <Footer />

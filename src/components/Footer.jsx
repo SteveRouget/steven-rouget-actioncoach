@@ -27,7 +27,9 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4" />
-                <span>Call for consultation</span>
+                <a href="tel:0412351755" className="hover:text-blue-200 transition-colors">
+                  0412 351 755
+                </a>
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4" />
@@ -125,15 +127,15 @@ const Footer = () => {
               <p>ActionCOACH® is a registered trademark of ActionCOACH Global.</p>
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-blue-100 hover:text-white transition-colors">
+              <Link to="/privacy-policy" className="text-blue-100 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-blue-100 hover:text-white transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-blue-100 hover:text-white transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="text-blue-100 hover:text-white transition-colors">
+              </Link>
+              <Link to="/disclaimer" className="text-blue-100 hover:text-white transition-colors">
                 Disclaimer
-              </a>
+              </Link>
             </div>
           </div>
         </div>
