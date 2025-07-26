@@ -17,16 +17,13 @@ const Footer = () => {
               className="h-12 w-auto filter brightness-0 invert"
             />
             
-            {/* Steven's Caricature */}
-            <div className="bg-white rounded-lg p-4 text-center">
+            {/* Steven's Caricature - Smaller size, no duplicate text */}
+            <div className="flex justify-center">
               <img 
                 src={stevenCaricature} 
-                alt="Steven Rouget - Building the Muscle in Your Business" 
-                className="w-32 h-auto mx-auto rounded-lg shadow-md"
+                alt="Steven Rouget - ActionCOACH Business Coach" 
+                className="w-20 h-auto rounded-lg shadow-md"
               />
-              <p className="text-blue-800 font-bold text-sm mt-2">
-                Building the Muscle in Your Business
-              </p>
             </div>
             
             <div>
