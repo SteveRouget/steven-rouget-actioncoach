@@ -1,152 +1,174 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import { ArrowLeft, Download, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Button } from '@/components/ui/button'
-import { ArrowLeft, CheckCircle, Users, Target, Award, MessageCircle, TrendingUp, Shield } from 'lucide-react'
 
 const LeadershipManagementPreview = () => {
-  useEffect(() => {
-    // Load GHL form script
-    const script = document.createElement('script');
-    script.src = 'https://link.msgsndr.com/js/form_embed.js';
-    script.async = true;
-    document.body.appendChild(script);
+  const [showThankYou, setShowThankYou] = useState(false)
 
-    return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+  const handleFormSubmit = () => {
+    // Show thank you message and download link
+    setShowThankYou(true)
+    // Scroll to top to show the message
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <div className="min-h-screen section-padding">
-      <div className="container-max">
-        <div className="mb-8">
-          <Link to="/resources">
-            <Button variant="outline" className="mb-4">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Resources
-            </Button>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm">
+        <div className="container-max py-4">
+          <Link to="/resources" className="inline-flex items-center text-actioncoach-blue hover:text-blue-700 transition-colors">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Resources
           </Link>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Content Section */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
-                Leadership & Management Framework
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Transform from business owner to true leader. This comprehensive framework provides the tools and strategies to build a high-performing team that delivers exceptional results while you focus on strategic growth.
-              </p>
+      <div className="container-max section-padding">
+        {/* Thank You Message */}
+        {showThankYou && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+            <div className="flex items-center">
+              <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+              <div>
+                <h3 className="text-lg font-semibold text-green-800">Thank You!</h3>
+                <p className="text-green-700">Your information has been submitted. Download your free framework below:</p>
+              </div>
             </div>
+            <div className="mt-4">
+              <a
+                href="/leadership-management-framework.pdf"
+                download="Leadership-Management-Framework.pdf"
+                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
+              >
+                <Download className="h-5 w-5 mr-2" />
+                Download Your Free Framework (PDF)
+              </a>
+            </div>
+          </div>
+        )}
 
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Leadership Essentials:</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-start space-x-3">
-                  <Users className="h-6 w-6 text-blue-600 mt-1" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Content Preview */}
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+              Leadership & Management Framework
+            </h1>
+            
+            <div className="prose prose-lg max-w-none">
+              <p className="text-xl text-gray-600 mb-6">
+                Transform from a manager who controls everything to a leader who multiplies results through others. Build high-performance teams that drive your business forward.
+              </p>
+
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">What You'll Master:</h2>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    👑
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Team Building</h3>
-                    <p className="text-sm text-gray-600">Recruit and retain top talent</p>
+                    <h3 className="font-semibold text-gray-900">Leadership Mindset Shift</h3>
+                    <p className="text-gray-600">Transform from controlling manager to empowering leader who multiplies impact.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <Target className="h-6 w-6 text-blue-600 mt-1" />
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    🎯
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Goal Setting</h3>
-                    <p className="text-sm text-gray-600">Create clear objectives and accountability</p>
+                    <h3 className="font-semibold text-gray-900">Building Your Dream Team</h3>
+                    <p className="text-gray-600">Proven hiring strategies to find the right people for the right seats.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <Award className="h-6 w-6 text-blue-600 mt-1" />
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    💬
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Performance Management</h3>
-                    <p className="text-sm text-gray-600">Motivate and develop your team</p>
+                    <h3 className="font-semibold text-gray-900">Communication That Inspires</h3>
+                    <p className="text-gray-600">Master the art of clear communication that motivates and drives results.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <MessageCircle className="h-6 w-6 text-blue-600 mt-1" />
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    📊
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Communication</h3>
-                    <p className="text-sm text-gray-600">Build trust and transparency</p>
+                    <h3 className="font-semibold text-gray-900">Performance Management Systems</h3>
+                    <p className="text-gray-600">Set clear expectations and manage performance for consistent results.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <TrendingUp className="h-6 w-6 text-blue-600 mt-1" />
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    🚀
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Culture Development</h3>
-                    <p className="text-sm text-gray-600">Create a winning environment</p>
+                    <h3 className="font-semibold text-gray-900">Delegation & Empowerment</h3>
+                    <p className="text-gray-600">Free up your time by effectively delegating tasks and developing others.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <Shield className="h-6 w-6 text-blue-600 mt-1" />
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-actioncoach-blue text-white rounded-full flex items-center justify-center font-bold text-sm mr-4">
+                    🏆
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-blue-800">Delegation</h3>
-                    <p className="text-sm text-gray-600">Empower others to take ownership</p>
+                    <h3 className="font-semibold text-gray-900">Creating a Winning Culture</h3>
+                    <p className="text-gray-600">Build a culture that attracts top talent and drives exceptional performance.</p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-blue-800 mb-3">From Manager to Leader</h3>
-              <p className="text-gray-600 mb-4">
-                Most business owners are great at their trade but struggle with leadership. This framework helps you:
-              </p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                  <span>Develop leadership skills that inspire others</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                  <span>Create systems that ensure consistency</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                  <span>Build a team that works without constant supervision</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                  <span>Scale your business through people, not just processes</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-              <h3 className="text-xl font-bold text-green-800 mb-3">The Leadership Multiplier Effect</h3>
-              <p className="text-green-700">
-                Great leaders don't just manage people - they multiply their capabilities. Learn how to get 10x results by developing others instead of doing everything yourself.
-              </p>
-            </div>
-          </div>
-
-          {/* Form Section */}
-          <div className="lg:sticky lg:top-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg border">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-blue-800 mb-2">
-                  Get Your Free Framework Now
-                </h2>
-                <p className="text-gray-600">
-                  Download instantly + get a FREE 30-minute strategy session with Steven
+              <div className="bg-blue-50 p-6 rounded-lg mt-8">
+                <h3 className="text-xl font-bold text-actioncoach-blue mb-3">From Manager to Leader</h3>
+                <p className="text-gray-700">
+                  Most business owners are great at their trade but struggle with leading people. This framework 
+                  provides the exact tools and strategies to transition from working IN your business to working 
+                  ON your business through effective leadership.
                 </p>
               </div>
 
-              {/* GHL Form Integration */}
+              <div className="bg-green-50 p-6 rounded-lg mt-6">
+                <h4 className="font-bold text-gray-900 mb-2">🎯 Practical Tools Included:</h4>
+                <ul className="text-gray-700 space-y-1">
+                  <li>• Team meeting agenda templates</li>
+                  <li>• One-on-one meeting frameworks</li>
+                  <li>• Performance review templates</li>
+                  <li>• Delegation checklists</li>
+                  <li>• Interview question banks</li>
+                </ul>
+              </div>
+
+              <div className="bg-yellow-50 p-6 rounded-lg mt-6">
+                <h4 className="font-bold text-gray-900 mb-2">⚡ Leadership Multiplier Effect:</h4>
+                <p className="text-gray-700">
+                  Great leaders don't just get things done - they multiply their impact through others. 
+                  Move from 1x (doing everything yourself) to 10x (developing others who develop others).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Lead Capture Form */}
+          <div>
+            <div className="bg-white p-8 rounded-lg shadow-lg sticky top-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                Get Your Free Framework
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Enter your details below to download the "Leadership & Management Framework" and start building your high-performance team today.
+              </p>
+
               <div className="ghl-form-container">
                 <iframe
                   src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
-                  style={{
-                    width: '100%',
-                    height: '600px',
-                    border: 'none',
-                    borderRadius: '8px'
-                  }}
-                  id="inline-hmIhFgV1z4hFqIww1tiw-leadership"
+                  style={{width:'100%', height:'600px', border:'none', borderRadius:'3px'}}
+                  id="inline-hmIhFgV1z4hFqIww1tiw" 
                   data-layout="{'id':'INLINE'}"
                   data-trigger-type="alwaysShow"
                   data-trigger-value=""
@@ -156,37 +178,42 @@ const LeadershipManagementPreview = () => {
                   data-deactivation-value=""
                   data-form-name="WebsiteResourceInfo"
                   data-height="600"
-                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw-leadership"
+                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw"
                   data-form-id="hmIhFgV1z4hFqIww1tiw"
-                  title="Leadership & Management Framework - Lead Capture"
+                  title="WebsiteResourceInfo"
+                  onLoad={() => {
+                    // Add hidden field value for tracking
+                    const iframe = document.getElementById('inline-hmIhFgV1z4hFqIww1tiw');
+                    if (iframe) {
+                      iframe.contentWindow.postMessage({
+                        type: 'setHiddenField',
+                        field: 'resource_requested',
+                        value: 'leadership'
+                      }, '*');
+                    }
+                  }}
                 />
               </div>
 
-              <div className="mt-6 space-y-2 text-sm text-gray-600">
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-                  <span>Instant delivery to your email</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-                  <span>Personal follow-up from Steven within 5 minutes</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-                  <span>No spam, unsubscribe anytime</span>
-                </div>
+              <div className="mt-6 text-center">
+                <button
+                  onClick={handleFormSubmit}
+                  className="text-sm text-actioncoach-blue hover:text-blue-700 underline"
+                >
+                  Click here after submitting the form above to download your framework
+                </button>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="font-semibold text-blue-800 mb-2">About Steven Rouget</h3>
-                <p className="text-sm text-gray-600">
-                  23 years of ActionCOACH experience helping trades and service businesses in Victoria achieve more control, more profit, and more free time.
-                </p>
+              <div className="mt-6 text-center text-sm text-gray-500">
+                <p>🔒 Your information is secure and will never be shared.</p>
+                <p>📧 You'll also receive valuable business tips via email.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     </div>
   )
 }
