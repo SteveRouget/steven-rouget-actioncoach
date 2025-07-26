@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Facebook, Linkedin, Youtube } from 'lucide-react'
 import actioncoachLogo from '../assets/actioncoach_logo_clean.png'
+import stevenCaricature from '../assets/caricatureSR.jpg'
 
 const Footer = () => {
   return (
@@ -15,6 +16,19 @@ const Footer = () => {
               alt="ActionCOACH Business Coaching" 
               className="h-12 w-auto filter brightness-0 invert"
             />
+            
+            {/* Steven's Caricature */}
+            <div className="bg-white rounded-lg p-4 text-center">
+              <img 
+                src={stevenCaricature} 
+                alt="Steven Rouget - Building the Muscle in Your Business" 
+                className="w-32 h-auto mx-auto rounded-lg shadow-md"
+              />
+              <p className="text-blue-800 font-bold text-sm mt-2">
+                Building the Muscle in Your Business
+              </p>
+            </div>
+            
             <div>
               <h3 className="text-lg font-bold mb-2">Steven Rouget</h3>
               <p className="text-sm text-blue-100">
@@ -41,7 +55,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
+          
           {/* Project BETA */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Project BETA</h3>
@@ -64,7 +78,7 @@ const Footer = () => {
               <p>Weekly live sessions with like-minded business owners</p>
             </div>
           </div>
-
+          
           {/* Services */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Services</h3>
@@ -89,7 +103,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-
+          
           {/* ActionCOACH Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold">ActionCOACH</h3>
@@ -118,7 +132,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
+        
         {/* Bottom Bar */}
         <div className="border-t border-blue-400 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
@@ -145,5 +159,3 @@ const Footer = () => {
 }
 
 export default Footer
-
-

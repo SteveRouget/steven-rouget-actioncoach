@@ -1,75 +1,85 @@
-import React, { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+import React, { useEffect } from 'react'
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    email: '',
-    businessName: '',
-    message: ''
-  })
+  useEffect(() => {
+    // Load GHL form script
+    const script = document.createElement('script');
+    script.src = 'https://link.msgsndr.com/js/form_embed.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    setFormData(prevData => ({
-      ...prevData,
-      [id]: value
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Here you would typically send this data to your GHL account
-    // For now, we'll just log it to the console
-    console.log('Form Data Submitted:', formData)
-    alert('Thank you for your inquiry! We will be in touch shortly.')
-    setFormData({
-      name: '',
-      mobile: '',
-      email: '',
-      businessName: '',
-      message: ''
-    })
-  }
+    return () => {
+      // Cleanup script on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input type="text" id="name" value={formData.name} onChange={handleChange} required />
+    <div className="bg-white p-8 rounded-lg shadow-lg border">
+      <div className="text-center mb-6">
+        <h2 className="text-2xl font-bold text-blue-800 mb-2">
+          Schedule Your Free Consultation
+        </h2>
+        <p className="text-gray-600">
+          Get personalized advice for your business growth challenges
+        </p>
       </div>
-      <div>
-        <Label htmlFor="mobile">Mobile</Label>
-        <Input type="tel" id="mobile" value={formData.mobile} onChange={handleChange} required />
+
+      {/* GHL Form Integration for Consultation Booking */}
+      <div className="ghl-form-container">
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
+          style={{
+            width: '100%',
+            height: '700px',
+            border: 'none',
+            borderRadius: '8px'
+          }}
+          id="inline-hmIhFgV1z4hFqIww1tiw-consultation"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="WebsiteResourceInfo"
+          data-height="700"
+          data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw-consultation"
+          data-form-id="hmIhFgV1z4hFqIww1tiw"
+          title="Free Consultation Booking - Lead Capture"
+        />
       </div>
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" value={formData.email} onChange={handleChange} required />
+
+      <div className="mt-6 space-y-2 text-sm text-gray-600">
+        <div className="flex items-center">
+          <span className="h-4 w-4 text-green-500 mr-2">✓</span>
+          <span>Free 30-minute strategy session</span>
+        </div>
+        <div className="flex items-center">
+          <span className="h-4 w-4 text-green-500 mr-2">✓</span>
+          <span>Personalized business growth advice</span>
+        </div>
+        <div className="flex items-center">
+          <span className="h-4 w-4 text-green-500 mr-2">✓</span>
+          <span>No obligation or sales pressure</span>
+        </div>
+        <div className="flex items-center">
+          <span className="h-4 w-4 text-green-500 mr-2">✓</span>
+          <span>Response within 5 minutes</span>
+        </div>
       </div>
-      <div>
-        <Label htmlFor="businessName">Business Name</Label>
-        <Input type="text" id="businessName" value={formData.businessName} onChange={handleChange} />
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <h3 className="font-semibold text-blue-800 mb-2">About Your Consultation</h3>
+        <p className="text-sm text-gray-600">
+          Steven will personally review your business situation and provide specific, actionable advice to help you overcome your biggest challenges and achieve your growth goals.
+        </p>
       </div>
-      <div>
-        <Label htmlFor="message">Your Message (Optional)</Label>
-        <Textarea id="message" value={formData.message} onChange={handleChange} rows="4" />
-      </div>
-      {/* Placeholder for GHL multiple choice question/form */}
-      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
-        <p className="font-bold">GHL Integration Placeholder</p>
-        <p>A multiple-choice question or form from GHL can be integrated here once available.</p>
-      </div>
-      <Button type="submit" className="w-full btn-primary">
-        Submit Inquiry
-      </Button>
-    </form>
+    </div>
   )
 }
 
 export default ContactForm
-
-
