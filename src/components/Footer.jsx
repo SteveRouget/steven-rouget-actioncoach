@@ -17,24 +17,25 @@ const Footer = () => {
               className="h-12 w-auto filter brightness-0 invert"
             />
             
-            {/* Steven's Caricature - Left aligned, no white box */}
-            <div className="flex justify-start">
+            {/* Steven's Info with Caricature */}
+            <div className="space-y-3">
               <img 
                 src={stevenCaricature} 
                 alt="Steven Rouget - ActionCOACH Business Coach" 
                 className="w-20 h-auto rounded-lg shadow-md"
               />
+              
+              <div>
+                <h3 className="text-lg font-bold">Steven Rouget</h3>
+                <p className="text-sm text-blue-100">
+                  ActionCOACH Business Coach
+                </p>
+                <p className="text-sm text-blue-100">
+                  23 Years of Experience
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-lg font-bold mb-2">Steven Rouget</h3>
-              <p className="text-sm text-blue-100">
-                ActionCOACH Business Coach
-              </p>
-              <p className="text-sm text-blue-100">
-                23 Years of Experience
-              </p>
-            </div>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4" />
