@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Facebook, Linkedin, Youtube } from 'lucide-react'
+import { Phone, Mail, MapPin, Facebook, Linkedin, Youtube, Instagram } from 'lucide-react'
 import actioncoachLogo from '../assets/actioncoach_logo_clean.png'
 import stevenCaricature from '../assets/caricatureSR.jpg'
 
@@ -17,8 +17,8 @@ const Footer = () => {
               className="h-12 w-auto filter brightness-0 invert"
             />
             
-            {/* Steven's Caricature - Smaller size, no duplicate text */}
-            <div className="flex justify-center">
+            {/* Steven's Caricature - Left aligned, no white box */}
+            <div className="flex justify-start">
               <img 
                 src={stevenCaricature} 
                 alt="Steven Rouget - ActionCOACH Business Coach" 
@@ -119,6 +119,9 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="https://www.facebook.com/stevenrougetactioncoach/" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-white transition-colors">
                 <Facebook className="h-5 w-5" />
+              </a>
+              <a href="https://www.instagram.com/stevenrouget/" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-white transition-colors">
+                <Instagram className="h-5 w-5" />
               </a>
               <a href="https://www.linkedin.com/in/steven-rouget-8532a98/" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-white transition-colors">
                 <Linkedin className="h-5 w-5" />
