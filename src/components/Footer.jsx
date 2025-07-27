@@ -10,30 +10,38 @@ const Footer = () => {
       <div className="container-max section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-4 relative">
             <img 
               src={actioncoachLogo} 
               alt="ActionCOACH Business Coaching" 
               className="h-12 w-auto filter brightness-0 invert"
             />
             
-            {/* Steven's Info with Caricature */}
-            <div className="space-y-3">
+            {/* Steven's Caricature - Positioned to cover white box */}
+            <div className="relative">
               <img 
                 src={stevenCaricature} 
                 alt="Steven Rouget - ActionCOACH Business Coach" 
-                className="w-20 h-auto rounded-lg shadow-md"
+                className="w-20 h-auto rounded-lg shadow-md absolute top-0 left-0 z-10"
+                style={{
+                  position: 'absolute',
+                  top: '-10px',
+                  left: '0px',
+                  zIndex: 10
+                }}
               />
-              
-              <div>
-                <h3 className="text-lg font-bold">Steven Rouget</h3>
-                <p className="text-sm text-blue-100">
-                  ActionCOACH Business Coach
-                </p>
-                <p className="text-sm text-blue-100">
-                  23 Years of Experience
-                </p>
-              </div>
+              {/* Spacer to maintain layout */}
+              <div className="h-24 w-20"></div>
+            </div>
+            
+            <div className="mt-4">
+              <h3 className="text-lg font-bold">Steven Rouget</h3>
+              <p className="text-sm text-blue-100">
+                ActionCOACH Business Coach
+              </p>
+              <p className="text-sm text-blue-100">
+                23 Years of Experience
+              </p>
             </div>
             
             <div className="space-y-2">
