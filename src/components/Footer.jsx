@@ -10,23 +10,31 @@ const Footer = () => {
       <div className="container-max section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-4" style={{backgroundColor: '#1e3a8a'}}>
             <img 
               src={actioncoachLogo} 
               alt="ActionCOACH Business Coaching" 
               className="h-12 w-auto filter brightness-0 invert"
             />
             
-            {/* Make any white box match the blue background */}
-            <div className="bg-actioncoach-blue">
+            {/* Steven's Caricature - Force blue background with inline styles */}
+            <div 
+              className="bg-actioncoach-blue" 
+              style={{
+                backgroundColor: '#1e3a8a !important',
+                background: '#1e3a8a !important',
+                backgroundImage: 'none !important'
+              }}
+            >
               <img 
                 src={stevenCaricature} 
                 alt="Steven Rouget - ActionCOACH Business Coach" 
                 className="w-20 h-auto rounded-lg shadow-md"
+                style={{backgroundColor: 'transparent'}}
               />
             </div>
             
-            <div>
+            <div style={{backgroundColor: '#1e3a8a'}}>
               <h3 className="text-lg font-bold">Steven Rouget</h3>
               <p className="text-sm text-blue-100">
                 ActionCOACH Business Coach
@@ -36,7 +44,7 @@ const Footer = () => {
               </p>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-2" style={{backgroundColor: '#1e3a8a'}}>
               <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4" />
                 <a href="tel:0412351755" className="hover:text-blue-200 transition-colors">
@@ -156,16 +164,38 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Global CSS to override any white backgrounds in footer */}
-      <style jsx>{`
+      {/* Ultra-specific CSS to eliminate any white backgrounds */}
+      <style jsx global>{`
         footer * {
-          background-color: inherit !important;
+          background-color: #1e3a8a !important;
+          background-image: none !important;
         }
-        footer .bg-white,
+        
+        footer div:first-child * {
+          background-color: #1e3a8a !important;
+          background: #1e3a8a !important;
+          background-image: none !important;
+        }
+        
+        footer .space-y-4 * {
+          background-color: #1e3a8a !important;
+        }
+        
+        footer .bg-actioncoach-blue {
+          background-color: #1e3a8a !important;
+          background: #1e3a8a !important;
+        }
+        
+        /* Target any potential white elements */
         footer [style*="background-color: white"],
         footer [style*="background-color: #ffffff"],
-        footer [style*="background-color: #fff"] {
+        footer [style*="background-color: #fff"],
+        footer [style*="background: white"],
+        footer [style*="background: #ffffff"],
+        footer [style*="background: #fff"],
+        footer .bg-white {
           background-color: #1e3a8a !important;
+          background: #1e3a8a !important;
         }
       `}</style>
     </footer>
