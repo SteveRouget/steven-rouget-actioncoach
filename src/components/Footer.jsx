@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Facebook, Linkedin, Youtube, Instagram } from 'lucide-react'
-import actioncoachLogo from '../assets/actioncoach_logo_clean.png'
 import stevenCaricature from '../assets/caricatureSR.jpg'
 
 const Footer = () => {
@@ -11,12 +10,6 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <img 
-              src={actioncoachLogo} 
-              alt="ActionCOACH Business Coaching" 
-              className="h-12 w-auto filter brightness-0 invert"
-            />
-            
             {/* Steven's Caricature */}
             <div className="bg-actioncoach-blue">
               <img 
