@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Download, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const SixWaysPreview = () => {
   const [showThankYou, setShowThankYou] = useState(false)
 
-  const handleFormSubmit = () => {
-    // Show thank you message and download link
-    setShowThankYou(true)
-    // Scroll to top to show the message
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  useEffect(() => {
+    // Listen for form submission from GHL iframe
+    const handleMessage = (event) => {
+      if (event.data && event.data.type === 'form_submitted') {
+        setShowThankYou(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -147,9 +153,9 @@ const SixWaysPreview = () => {
 
               <div className="ghl-form-container">
                 <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
+                  src="https://api.leadconnectorhq.com/widget/form/Cq2i1UETBNDEhLq9xg2Q"
                   style={{width:'100%', height:'600px', border:'none', borderRadius:'3px'}}
-                  id="inline-hmIhFgV1z4hFqIww1tiw" 
+                  id="inline-Cq2i1UETBNDEhLq9xg2Q" 
                   data-layout="{'id':'INLINE'}"
                   data-trigger-type="alwaysShow"
                   data-trigger-value=""
@@ -157,32 +163,12 @@ const SixWaysPreview = () => {
                   data-activation-value=""
                   data-deactivation-type="neverDeactivate"
                   data-deactivation-value=""
-                  data-form-name="WebsiteResourceInfo"
+                  data-form-name="SixWaysResourceInfo"
                   data-height="600"
-                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw"
-                  data-form-id="hmIhFgV1z4hFqIww1tiw"
-                  title="WebsiteResourceInfo"
-                  onLoad={() => {
-                    // Add hidden field value for tracking
-                    const iframe = document.getElementById('inline-hmIhFgV1z4hFqIww1tiw');
-                    if (iframe) {
-                      iframe.contentWindow.postMessage({
-                        type: 'setHiddenField',
-                        field: 'resource_requested',
-                        value: '6-ways'
-                      }, '*');
-                    }
-                  }}
+                  data-layout-iframe-id="inline-Cq2i1UETBNDEhLq9xg2Q"
+                  data-form-id="Cq2i1UETBNDEhLq9xg2Q"
+                  title="SixWaysResourceInfo"
                 />
-              </div>
-
-              <div className="mt-6 text-center">
-                <button
-                  onClick={handleFormSubmit}
-                  className="text-sm text-actioncoach-blue hover:text-blue-700 underline"
-                >
-                  Click here after submitting the form above to download your guide
-                </button>
               </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">

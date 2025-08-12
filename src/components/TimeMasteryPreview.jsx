@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Download, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const TimeMasteryPreview = () => {
   const [showThankYou, setShowThankYou] = useState(false)
 
-  const handleFormSubmit = () => {
-    // Show thank you message and download link
-    setShowThankYou(true)
-    // Scroll to top to show the message
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  useEffect(() => {
+    // Listen for form submission from GHL iframe
+    const handleMessage = (event) => {
+      if (event.data && event.data.type === 'form_submitted') {
+        setShowThankYou(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -155,9 +161,9 @@ const TimeMasteryPreview = () => {
 
               <div className="ghl-form-container">
                 <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
+                  src="https://api.leadconnectorhq.com/widget/form/Svr4fcKzGJpQfpIwFJ2u"
                   style={{width:'100%', height:'600px', border:'none', borderRadius:'3px'}}
-                  id="inline-hmIhFgV1z4hFqIww1tiw" 
+                  id="inline-Svr4fcKzGJpQfpIwFJ2u" 
                   data-layout="{'id':'INLINE'}"
                   data-trigger-type="alwaysShow"
                   data-trigger-value=""
@@ -165,32 +171,12 @@ const TimeMasteryPreview = () => {
                   data-activation-value=""
                   data-deactivation-type="neverDeactivate"
                   data-deactivation-value=""
-                  data-form-name="WebsiteResourceInfo"
+                  data-form-name="TimeManagementResourceInfo"
                   data-height="600"
-                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw"
-                  data-form-id="hmIhFgV1z4hFqIww1tiw"
-                  title="WebsiteResourceInfo"
-                  onLoad={() => {
-                    // Add hidden field value for tracking
-                    const iframe = document.getElementById('inline-hmIhFgV1z4hFqIww1tiw');
-                    if (iframe) {
-                      iframe.contentWindow.postMessage({
-                        type: 'setHiddenField',
-                        field: 'resource_requested',
-                        value: 'time-mastery'
-                      }, '*');
-                    }
-                  }}
+                  data-layout-iframe-id="inline-Svr4fcKzGJpQfpIwFJ2u"
+                  data-form-id="Svr4fcKzGJpQfpIwFJ2u"
+                  title="TimeManagementResourceInfo"
                 />
-              </div>
-
-              <div className="mt-6 text-center">
-                <button
-                  onClick={handleFormSubmit}
-                  className="text-sm text-actioncoach-blue hover:text-blue-700 underline"
-                >
-                  Click here after submitting the form above to download your checklist
-                </button>
               </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">

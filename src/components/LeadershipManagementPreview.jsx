@@ -166,9 +166,9 @@ const LeadershipManagementPreview = () => {
 
               <div className="ghl-form-container">
                 <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
+                  src="https://api.leadconnectorhq.com/widget/form/lXdBGB1swNGo2atooDjA"
                   style={{width:'100%', height:'600px', border:'none', borderRadius:'3px'}}
-                  id="inline-hmIhFgV1z4hFqIww1tiw" 
+                  id="inline-lXdBGB1swNGo2atooDjA" 
                   data-layout="{'id':'INLINE'}"
                   data-trigger-type="alwaysShow"
                   data-trigger-value=""
@@ -176,32 +176,12 @@ const LeadershipManagementPreview = () => {
                   data-activation-value=""
                   data-deactivation-type="neverDeactivate"
                   data-deactivation-value=""
-                  data-form-name="WebsiteResourceInfo"
+                  data-form-name="LeadershipResourceInfo"
                   data-height="600"
-                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw"
-                  data-form-id="hmIhFgV1z4hFqIww1tiw"
-                  title="WebsiteResourceInfo"
-                  onLoad={() => {
-                    // Add hidden field value for tracking
-                    const iframe = document.getElementById('inline-hmIhFgV1z4hFqIww1tiw');
-                    if (iframe) {
-                      iframe.contentWindow.postMessage({
-                        type: 'setHiddenField',
-                        field: 'resource_requested',
-                        value: 'leadership'
-                      }, '*');
-                    }
-                  }}
+                  data-layout-iframe-id="inline-lXdBGB1swNGo2atooDjA"
+                  data-form-id="lXdBGB1swNGo2atooDjA"
+                  title="LeadershipResourceInfo"
                 />
-              </div>
-
-              <div className="mt-6 text-center">
-                <button
-                  onClick={handleFormSubmit}
-                  className="text-sm text-actioncoach-blue hover:text-blue-700 underline"
-                >
-                  Click here after submitting the form above to download your framework
-                </button>
               </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">

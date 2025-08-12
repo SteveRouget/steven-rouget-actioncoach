@@ -163,9 +163,9 @@ const SalesMarketingPreview = () => {
 
               <div className="ghl-form-container">
                 <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/hmIhFgV1z4hFqIww1tiw"
+                  src="https://api.leadconnectorhq.com/widget/form/2DxmAB526szVqWspghIg"
                   style={{width:'100%', height:'600px', border:'none', borderRadius:'3px'}}
-                  id="inline-hmIhFgV1z4hFqIww1tiw" 
+                  id="inline-2DxmAB526szVqWspghIg" 
                   data-layout="{'id':'INLINE'}"
                   data-trigger-type="alwaysShow"
                   data-trigger-value=""
@@ -173,22 +173,11 @@ const SalesMarketingPreview = () => {
                   data-activation-value=""
                   data-deactivation-type="neverDeactivate"
                   data-deactivation-value=""
-                  data-form-name="WebsiteResourceInfo"
+                  data-form-name="SalesMarketingResourceInfo"
                   data-height="600"
-                  data-layout-iframe-id="inline-hmIhFgV1z4hFqIww1tiw"
-                  data-form-id="hmIhFgV1z4hFqIww1tiw"
-                  title="WebsiteResourceInfo"
-                  onLoad={() => {
-                    // Add hidden field value for tracking
-                    const iframe = document.getElementById('inline-hmIhFgV1z4hFqIww1tiw');
-                    if (iframe) {
-                      iframe.contentWindow.postMessage({
-                        type: 'setHiddenField',
-                        field: 'resource_requested',
-                        value: 'sales-marketing'
-                      }, '*');
-                    }
-                  }}
+                  data-layout-iframe-id="inline-2DxmAB526szVqWspghIg"
+                  data-form-id="2DxmAB526szVqWspghIg"
+                  title="SalesMarketingResourceInfo"
                 />
               </div>
 
