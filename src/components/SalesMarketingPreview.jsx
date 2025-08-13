@@ -1,34 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Download, CheckCircle } from 'lucide-react'
+import React from 'react'
+import { ArrowLeft, Download } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const SalesMarketingPreview = () => {
-  const [showThankYou, setShowThankYou] = useState(false)
-
-  useEffect(() => {
-    // Listen for form submission event
-    const handleFormSubmission = () => {
-      setShowThankYou(true)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-
-    // Set up global function for script to call
-    window.showDownload = handleFormSubmission
-    
-    // Listen for custom event
-    window.addEventListener('formSubmitted', handleFormSubmission)
-
-    return () => {
-      window.removeEventListener('formSubmitted', handleFormSubmission)
-      delete window.showDownload
-    }
-  }, [])
-
-  const handleFormSubmit = () => {
-    setShowThankYou(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -42,29 +16,6 @@ const SalesMarketingPreview = () => {
       </div>
 
       <div className="container-max section-padding">
-        {/* Thank You Message */}
-        {showThankYou && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-            <div className="flex items-center">
-              <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
-              <div>
-                <h3 className="text-lg font-semibold text-green-800">Thank You!</h3>
-                <p className="text-green-700">Your information has been submitted. Download your free template below:</p>
-              </div>
-            </div>
-            <div className="mt-4">
-              <a
-                href="/marketing-strategy-template-trades.pdf"
-                download="Marketing-Strategy-Template-for-Trades.pdf"
-                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
-              >
-                <Download className="h-5 w-5 mr-2" />
-                Download Your Free Template (PDF)
-              </a>
-            </div>
-          </div>
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Content Preview */}
           <div>
@@ -226,12 +177,15 @@ const SalesMarketingPreview = () => {
               }} />
 
               <div className="mt-6 text-center">
-                <button
-                  onClick={handleFormSubmit}
-                  className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
+                <a
+                  href="/marketing-strategy-template-trades.pdf"
+                  download="Marketing-Strategy-Template-for-Trades.pdf"
+                  className="inline-flex items-center bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors font-semibold text-lg shadow-lg"
                 >
-                  Form Submitted? Click Here to Download
-                </button>
+                  <Download className="h-6 w-6 mr-3" />
+                  Form Submitted? Download Your PDF Now
+                </a>
+                <p className="text-sm text-gray-600 mt-2">Click above after submitting the form to download instantly</p>
               </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">
