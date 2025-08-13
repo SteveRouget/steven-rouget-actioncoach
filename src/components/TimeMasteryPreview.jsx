@@ -209,24 +209,59 @@ const TimeMasteryPreview = () => {
                 __html: `
                   // Monitor for form submission completion
                   let formSubmitted = false;
+                  let checkCount = 0;
                   
                   function checkFormSubmission() {
                     const iframe = document.getElementById('inline-Svr4fcKzGJpQfpIwFJ2u');
                     if (iframe && !formSubmitted) {
+                      checkCount++;
+                      
                       try {
                         // Try to access iframe content (may fail due to CORS)
                         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (iframeDoc && iframeDoc.body.innerText.includes('Thank you for taking the time to complete this form')) {
-                          showDownloadSection();
+                        if (iframeDoc) {
+                          const bodyText = iframeDoc.body.innerText || iframeDoc.body.textContent || '';
+                          // Check for various success message variations
+                          if (bodyText.includes('Thank you for taking the time to complete this form') ||
+                              bodyText.includes('Thank you') ||
+                              bodyText.includes('Click the Link below to download')) {
+                            console.log('Form submission detected via iframe content');
+                            showDownloadSection();
+                            return;
+                          }
                         }
                       } catch(e) {
-                        // CORS restriction - use alternative detection
-                        // Check if iframe height changed (indicates form submission)
-                        const currentHeight = iframe.offsetHeight;
-                        if (currentHeight > 0 && iframe.dataset.originalHeight && 
-                            Math.abs(currentHeight - parseInt(iframe.dataset.originalHeight)) > 50) {
-                          setTimeout(showDownloadSection, 2000); // Delay to ensure form processing
+                        // CORS restriction - use alternative detection methods
+                        console.log('CORS restriction, using alternative detection');
+                      }
+                      
+                      // Alternative detection: Check for URL changes in iframe
+                      try {
+                        const iframeSrc = iframe.src || iframe.contentWindow.location.href;
+                        if (iframeSrc && iframeSrc.includes('success') || iframeSrc.includes('thank')) {
+                          console.log('Form submission detected via URL change');
+                          showDownloadSection();
+                          return;
                         }
+                      } catch(e) {
+                        // URL access also restricted
+                      }
+                      
+                      // Height change detection as final fallback
+                      const currentHeight = iframe.offsetHeight;
+                      if (currentHeight > 0 && iframe.dataset.originalHeight) {
+                        const heightDiff = Math.abs(currentHeight - parseInt(iframe.dataset.originalHeight));
+                        if (heightDiff > 30) {
+                          console.log('Form submission detected via height change:', heightDiff);
+                          setTimeout(showDownloadSection, 1500);
+                          return;
+                        }
+                      }
+                      
+                      // Force show after 30 checks (60 seconds) as ultimate fallback
+                      if (checkCount > 30) {
+                        console.log('Timeout reached, showing download section');
+                        showDownloadSection();
                       }
                     }
                   }
@@ -247,20 +282,44 @@ const TimeMasteryPreview = () => {
                     const iframe = document.getElementById('inline-Svr4fcKzGJpQfpIwFJ2u');
                     if (iframe) {
                       iframe.dataset.originalHeight = iframe.offsetHeight;
+                      console.log('Original iframe height stored:', iframe.offsetHeight);
                     }
-                  }, 1000);
+                  }, 2000);
                   
                   // Check every 2 seconds for form submission
-                  setInterval(checkFormSubmission, 2000);
+                  const checkInterval = setInterval(checkFormSubmission, 2000);
                   
                   // Listen for custom events from GHL form
                   window.addEventListener('message', function(event) {
                     if (event.data && event.data.type === 'form_submitted') {
+                      console.log('Form submitted via message event');
                       showDownloadSection();
                     }
                   });
+                  
+                  // Manual trigger function for testing
+                  window.triggerDownload = function() {
+                    console.log('Manual download trigger activated');
+                    showDownloadSection();
+                  };
                 `
               }} />
+
+              {/* Manual fallback button for immediate access */}
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => {
+                    const downloadSection = document.getElementById('download-section');
+                    if (downloadSection) {
+                      downloadSection.style.display = 'block';
+                      downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                  }}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                >
+                  Show Download (Manual Trigger)
+                </button>
+              </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">
                 <p>🔒 Your information is secure and will never be shared.</p>
