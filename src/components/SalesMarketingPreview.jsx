@@ -149,44 +149,88 @@ const SalesMarketingPreview = () => {
                 />
               </div>
 
-              {/* Automatic download detection - no manual click needed */}
+              {/* Direct download after form submission */}
+              <div id="download-section" className="mt-6 text-center" style={{display: 'none'}}>
+                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-4">
+                  <h3 className="text-xl font-bold text-green-800 mb-2">✅ Thank You!</h3>
+                  <p className="text-green-700 mb-4">Your information has been submitted successfully.</p>
+                  <a
+                    href="/marketing-strategy-template-trades.pdf"
+                    download="Marketing-Strategy-Template-for-Trades.pdf"
+                    className="inline-flex items-center bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors font-semibold text-lg shadow-lg"
+                    onClick={() => {
+                      // Track download
+                      if (typeof gtag !== 'undefined') {
+                        gtag('event', 'download', {
+                          'event_category': 'Resource',
+                          'event_label': 'Sales Marketing Template'
+                        });
+                      }
+                    }}
+                  >
+                    <Download className="h-6 w-6 mr-3" />
+                    Download Your Free Template (PDF)
+                  </a>
+                </div>
+              </div>
+
+              {/* Form submission detection script */}
               <script dangerouslySetInnerHTML={{
                 __html: `
-                  // Auto-detect form submission and show download
-                  setInterval(function() {
+                  // Monitor for form submission completion
+                  let formSubmitted = false;
+                  
+                  function checkFormSubmission() {
                     const iframe = document.getElementById('inline-2DxmAB526szVqWspghIg');
-                    if (iframe) {
+                    if (iframe && !formSubmitted) {
                       try {
+                        // Try to access iframe content (may fail due to CORS)
                         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
                         if (iframeDoc && iframeDoc.body.innerText.includes('Thank you for taking the time to complete this form')) {
-                          // Form was submitted, trigger download box
-                          if (window.React && window.showDownload) {
-                            window.showDownload();
-                          } else {
-                            // Fallback: dispatch custom event
-                            window.dispatchEvent(new CustomEvent('formSubmitted'));
-                          }
+                          showDownloadSection();
                         }
                       } catch(e) {
-                        // Cross-origin restrictions - check for URL change or other indicators
-                        console.log('Form submission detection active');
+                        // CORS restriction - use alternative detection
+                        // Check if iframe height changed (indicates form submission)
+                        const currentHeight = iframe.offsetHeight;
+                        if (currentHeight > 0 && iframe.dataset.originalHeight && 
+                            Math.abs(currentHeight - parseInt(iframe.dataset.originalHeight)) > 50) {
+                          setTimeout(showDownloadSection, 2000); // Delay to ensure form processing
+                        }
                       }
                     }
-                  }, 2000);
+                  }
+                  
+                  function showDownloadSection() {
+                    if (!formSubmitted) {
+                      formSubmitted = true;
+                      const downloadSection = document.getElementById('download-section');
+                      if (downloadSection) {
+                        downloadSection.style.display = 'block';
+                        downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }
+                  }
+                  
+                  // Store original iframe height for comparison
+                  setTimeout(() => {
+                    const iframe = document.getElementById('inline-2DxmAB526szVqWspghIg');
+                    if (iframe) {
+                      iframe.dataset.originalHeight = iframe.offsetHeight;
+                    }
+                  }, 1000);
+                  
+                  // Check every 2 seconds for form submission
+                  setInterval(checkFormSubmission, 2000);
+                  
+                  // Listen for custom events from GHL form
+                  window.addEventListener('message', function(event) {
+                    if (event.data && event.data.type === 'form_submitted') {
+                      showDownloadSection();
+                    }
+                  });
                 `
               }} />
-
-              <div className="mt-6 text-center">
-                <a
-                  href="/marketing-strategy-template-trades.pdf"
-                  download="Marketing-Strategy-Template-for-Trades.pdf"
-                  className="inline-flex items-center bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors font-semibold text-lg shadow-lg"
-                >
-                  <Download className="h-6 w-6 mr-3" />
-                  Form Submitted? Download Your PDF Now
-                </a>
-                <p className="text-sm text-gray-600 mt-2">Click above after submitting the form to download instantly</p>
-              </div>
 
               <div className="mt-6 text-center text-sm text-gray-500">
                 <p>🔒 Your information is secure and will never be shared.</p>
