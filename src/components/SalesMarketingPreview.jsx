@@ -6,9 +6,7 @@ const SalesMarketingPreview = () => {
   const [showThankYou, setShowThankYou] = useState(false)
 
   const handleFormSubmit = () => {
-    // Show thank you message and download link
     setShowThankYou(true)
-    // Scroll to top to show the message
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
