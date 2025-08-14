@@ -205,24 +205,47 @@ const LeadershipManagementPreview = () => {
                 __html: `
                   // Monitor for form submission completion
                   let formSubmitted = false;
+                  let checkCount = 0;
                   
                   function checkFormSubmission() {
                     const iframe = document.getElementById('inline-lXdBGB1swNGo2atooDjA');
                     if (iframe && !formSubmitted) {
+                      checkCount++;
+                      
                       try {
                         // Try to access iframe content (may fail due to CORS)
                         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (iframeDoc && iframeDoc.body.innerText.includes('Thank you for taking the time to complete this form')) {
-                          showDownloadSection();
+                        if (iframeDoc) {
+                          const bodyText = iframeDoc.body.innerText || iframeDoc.body.textContent || '';
+                          // Check for various success message variations
+                          if (bodyText.includes('Thank you for taking the time to complete this form') ||
+                              bodyText.includes('Thank you') ||
+                              bodyText.includes('Click the Link below to download')) {
+                            console.log('Form submission detected via iframe content');
+                            showDownloadSection();
+                            return;
+                          }
                         }
                       } catch(e) {
-                        // CORS restriction - use alternative detection
-                        // Check if iframe height changed (indicates form submission)
-                        const currentHeight = iframe.offsetHeight;
-                        if (currentHeight > 0 && iframe.dataset.originalHeight && 
-                            Math.abs(currentHeight - parseInt(iframe.dataset.originalHeight)) > 50) {
-                          setTimeout(showDownloadSection, 2000); // Delay to ensure form processing
+                        // CORS restriction - use alternative detection methods
+                        console.log('CORS restriction, using alternative detection');
+                      }
+                      
+                      // Height change detection as fallback
+                      const currentHeight = iframe.offsetHeight;
+                      if (currentHeight > 0 && iframe.dataset.originalHeight) {
+                        const heightDiff = Math.abs(currentHeight - parseInt(iframe.dataset.originalHeight));
+                        if (heightDiff > 30) {
+                          console.log('Form submission detected via height change:', heightDiff);
+                          setTimeout(showDownloadSection, 1500);
+                          return;
                         }
+                      }
+                      
+                      // Force show after 30 checks (60 seconds) as ultimate fallback
+                      if (checkCount > 30) {
+                        console.log('Timeout reached, showing download section');
+                        showDownloadSection();
                       }
                     }
                   }
@@ -243,15 +266,17 @@ const LeadershipManagementPreview = () => {
                     const iframe = document.getElementById('inline-lXdBGB1swNGo2atooDjA');
                     if (iframe) {
                       iframe.dataset.originalHeight = iframe.offsetHeight;
+                      console.log('Original iframe height stored:', iframe.offsetHeight);
                     }
-                  }, 1000);
+                  }, 2000);
                   
                   // Check every 2 seconds for form submission
-                  setInterval(checkFormSubmission, 2000);
+                  const checkInterval = setInterval(checkFormSubmission, 2000);
                   
                   // Listen for custom events from GHL form
                   window.addEventListener('message', function(event) {
                     if (event.data && event.data.type === 'form_submitted') {
+                      console.log('Form submitted via message event');
                       showDownloadSection();
                     }
                   });

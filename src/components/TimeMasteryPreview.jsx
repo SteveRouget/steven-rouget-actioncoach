@@ -305,22 +305,6 @@ const TimeMasteryPreview = () => {
                 `
               }} />
 
-              {/* Manual fallback button for immediate access */}
-              <div className="mt-4 text-center">
-                <button
-                  onClick={() => {
-                    const downloadSection = document.getElementById('download-section');
-                    if (downloadSection) {
-                      downloadSection.style.display = 'block';
-                      downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-                >
-                  Show Download (Manual Trigger)
-                </button>
-              </div>
-
               <div className="mt-6 text-center text-sm text-gray-500">
                 <p>🔒 Your information is secure and will never be shared.</p>
                 <p>📧 You'll also receive valuable business tips via email.</p>
