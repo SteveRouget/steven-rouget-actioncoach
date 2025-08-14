@@ -17,6 +17,7 @@ import SixWaysPreview from './components/SixWaysPreview'
 import TimeMasteryPreview from './components/TimeMasteryPreview'
 import SalesMarketingPreview from './components/SalesMarketingPreview'
 import LeadershipManagementPreview from './components/LeadershipManagementPreview'
+import ThankYouPage from './components/ThankYouPage'
 import BuyingCustomersBlogPost from './components/BuyingCustomersBlogPost'
 import CashFlowBlogPost from './components/CashFlowBlogPost'
 import SixWaysBlogPost from './components/SixWaysBlogPost'
@@ -59,6 +60,7 @@ function App() {
             <Route path="/resources/time-mastery-preview" element={<TimeMasteryPreview />} />
             <Route path="/resources/sales-marketing-preview" element={<SalesMarketingPreview />} />
             <Route path="/resources/leadership-management-preview" element={<LeadershipManagementPreview />} />
+            <Route path="/thank-you" element={<ThankYouPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/buying-customers-brad-sugars-strategy" element={<BuyingCustomersBlogPost />} />

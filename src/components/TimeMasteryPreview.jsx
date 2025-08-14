@@ -296,12 +296,6 @@ const TimeMasteryPreview = () => {
                       showDownloadSection();
                     }
                   });
-                  
-                  // Manual trigger function for testing
-                  window.triggerDownload = function() {
-                    console.log('Manual download trigger activated');
-                    showDownloadSection();
-                  };
                 `
               }} />
 
