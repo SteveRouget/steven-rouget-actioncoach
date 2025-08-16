@@ -16,29 +16,6 @@ const LeadershipManagementPreview = () => {
       </div>
 
       <div className="container-max section-padding">
-        {/* Thank You Message */}
-        {showThankYou && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-            <div className="flex items-center">
-              <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
-              <div>
-                <h3 className="text-lg font-semibold text-green-800">Thank You!</h3>
-                <p className="text-green-700">Your information has been submitted. Download your free framework below:</p>
-              </div>
-            </div>
-            <div className="mt-4">
-              <a
-                href="/leadership-management-framework.pdf"
-                download="Leadership-Management-Framework.pdf"
-                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
-              >
-                <Download className="h-5 w-5 mr-2" />
-                Download Your Free Framework (PDF)
-              </a>
-            </div>
-          </div>
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Content Preview */}
           <div>
