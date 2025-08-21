@@ -163,12 +163,14 @@ const ThankYouPage = () => {
             </div>
 
             <div className="mt-6">
-              <Link
-                to="/book-consultation"
+              <a
+                href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center bg-actioncoach-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
               >
                 Book Free Consultation
-              </Link>
+              </a>
             </div>
           </div>
 

@@ -43,11 +43,11 @@ const HomePage = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/contact">
+                <a href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-800 font-bold py-4 px-8 text-lg">
                     Book Free Consultation
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="relative">
@@ -327,11 +327,11 @@ const HomePage = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link to="/contact">
+            <a href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-800 font-bold py-4 px-8 text-lg">
                 Book Free Consultation
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

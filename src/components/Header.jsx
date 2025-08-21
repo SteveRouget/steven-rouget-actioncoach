@@ -151,11 +151,11 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Link to="/contact">
+            <a href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6" target="_blank" rel="noopener noreferrer">
               <Button className="btn-primary">
                 Book Free Consultation
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -266,11 +266,11 @@ const Header = () => {
               </Link>
 
               <div className="pt-4">
-                <Link to="/contact" onClick={closeMenu}>
+                <a href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
                   <Button className="btn-primary w-full">
                     Book Free Consultation
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

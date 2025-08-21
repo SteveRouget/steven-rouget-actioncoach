@@ -89,9 +89,9 @@ const Footer = () => {
               <Link to="/blog" className="block text-sm text-blue-100 hover:text-white transition-colors">
                 Blog
               </Link>
-              <Link to="/contact" className="block text-sm text-blue-100 hover:text-white transition-colors">
+              <a href="https://api.leadconnectorhq.com/widget/booking/QK33FZ6MEVxaCQx3yMY6" target="_blank" rel="noopener noreferrer" className="block text-sm text-blue-100 hover:text-white transition-colors">
                 Book Consultation
-              </Link>
+              </a>
             </div>
           </div>
           
